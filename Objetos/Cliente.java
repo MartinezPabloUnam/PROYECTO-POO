@@ -17,5 +17,15 @@ public class Cliente extends Usuario
         this.compras = compras;
     }
 
+    public void setnewdom(Domicilio newdom)
+    {
+        domicilios.add(newdom);
+    }
+
+    public void setnewmetPago(MedioPago newmet)
+    {
+        mediosdepago.add(newmet);
+    }
+
 
 }

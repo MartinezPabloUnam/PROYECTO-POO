@@ -1,6 +1,6 @@
 package Objetos;
 
-public class MedioPago 
+public abstract class MedioPago 
 {
-    
+    public abstract void mostrarDetalles();
 }

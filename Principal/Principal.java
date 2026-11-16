@@ -1,30 +1,33 @@
 
 package Principal;
 
-import java.util. Scanner;
-import Procesos.InicioSesion;
+import Procesos. InicioSesion;
+import java.util.Scanner;
+
+
 public class Principal 
 {
     public static void main(String[] args) 
     {
         Scanner lector= new Scanner(System.in);
+        InicioSesion ingresosistem = new InicioSesion();
         int k=1;
         System.out.println("BIENVENIDO A FACEBOOK MARKETPLACE!!!");
         do{
             System.out.println("Ingresa el tipo de Usuario que eres:");
-            System.out.println("1) Soy Administrador");
-            System.out.println("2) Soy cliente");
+            System.out.println("1) Entrar al Sistema");
+            System.out.println("2) Registrarse como Cliente");
             System.out.println("3) Salir");
             int decision= lector.nextInt();
 
             switch (decision)
             {
                 case 1:
-                    
+                    ingresosistem.EntrarSistema();
                     break;
                 
                 case 2:
-                    System.out.println("BIENVENIDO CLIENTE!!!");
+                    ingresosistem.RegistroClientes();
                     break;
 
                 case 3:

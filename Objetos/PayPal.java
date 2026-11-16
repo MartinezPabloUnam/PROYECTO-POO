@@ -10,4 +10,11 @@ public class PayPal extends MedioPago
         this.contraseña=contraseña;
             this.correo=correo;
     }
+
+    @Override 
+
+    public void mostrarDetalles()
+    {
+        System.out.println("Se ha enviado una confirmacion de pago a: "+this.correo);
+    }
 }
