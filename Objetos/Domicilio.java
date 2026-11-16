@@ -13,4 +13,18 @@ public class Domicilio
         this.numext=numext;
     }
 
+    public String getCalle(){
+        return this.calle;
+    }
+
+    public String getColonia(){
+        return this.calle;
+    }
+
+    public String getNumext(){
+        return this.calle;
+    }
+
+
+
 }

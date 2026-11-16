@@ -80,13 +80,28 @@ public class MenuClientes
     {
         Scanner lector= new Scanner(System.in);
         Scanner lector2= new Scanner(System.in);
-        System.out.println("Ingresa una calle:");
-        String calle = lector.nextLine();
-        System.out.println("Ingresa una colonia:");
-        String colonia = lector.nextLine();
-        System.out.println("Ingresa un numero exterior:");
-        int num = lector2.nextInt();
-
+        String calle;
+        String colonia;
+        int num; 
+        do{
+            boolean continuar=false;
+            System.out.println("Ingresa una calle:");
+            calle = lector.nextLine();
+            System.out.println("Ingresa una colonia:");
+            colonia = lector.nextLine();
+            System.out.println("Ingresa un numero exterior:");
+            num = lector2.nextInt();
+            for(Domicilio dom:cliente.getDomicilios()){
+                if(dom.getCalle().equalsIgnoreCase(calle)&& dom.getColonia().equalsIgnoreCase(colonia)&& num==dom.getNumext()){
+                    System.out.println("Los datos ingresados ya existen en tus domicilios ingresados anteriormente vulevelo a intentar");
+                    continuar=true;
+                    break;
+                }
+                else{
+                    continuar=false;
+                }
+            }            
+        }while (continuar);                 
         Domicilio nuevodom = new Domicilio(calle, colonia, num);
         cliente.setnewdom(nuevodom);
     }
