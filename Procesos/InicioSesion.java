@@ -1,4 +1,5 @@
 package Procesos;
+import Objetos.Admin;
 import Objetos.Carrito;
 import Objetos.Cliente;
 import Objetos.Usuario;
@@ -29,7 +30,9 @@ public class InicioSesion
             {
                c=0;
                System.out.println("Usuario encontrado!!, entrando al Menu de Clientes......");
-               //FALTA LLAMADA A MENU
+               MenuClientes menucli = new MenuClientes((Cliente)clientelist);
+               menucli.clientemenu();
+               break;
             }      
          }
          for(Usuario adminlist : admins_sistema)
@@ -38,7 +41,9 @@ public class InicioSesion
             {
                c=0;
                System.out.println("Usuario encontrado!!, entrando al Menú de Administradores");
-               //Falta llamada a menu de admins
+               MenuAdmins menuad = new MenuAdmins((Admin)adminlist);
+               menuad.adminmenu();
+               break;
             }
          }
          if(c==1)
@@ -57,14 +62,32 @@ public class InicioSesion
       String nombre = lector.nextLine();
       System.out.println("Por favor ingresa tu nombre de usuario:");
       String nombreusu = lector.nextLine();
-      System.out.println("Por favor ingresa tu telefono:");
-      int numero = read.nextInt();
-      Carrito carroclient = new Carrito();
+      
 
-      Cliente newmiembro = new Cliente(nombre,nombreusu,numero,carroclient);
-      clientes_sistema.add(newmiembro);
-      System.out.println("REGISTRO EXITOSO!!!");
+      boolean existe=false;
+      for (Usuario u : clientes_sistema) 
+      {
+       if(u.getNombreusu().equals(nombreusu)) 
+       {
+         existe = true;
+         break;
+       }
+      }
+
+      if(existe) 
+      {
+       System.out.println("---- ERROR: El nombre de usuario '" + nombreusu + "' ya está en uso. Intente con otro. ----");
+      }  
+      else
+      {
+       System.out.println("Por favor ingresa tu telefono:");
+       int numero = read.nextInt();
+       Carrito carroclient = new Carrito();
+       Cliente newmiembro = new Cliente(nombre,nombreusu,numero,carroclient);
+       clientes_sistema.add(newmiembro);
+       System.out.println("REGISTRO EXITOSO!!!");
+      }
+      
    }  
-
 
 }

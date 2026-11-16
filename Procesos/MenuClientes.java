@@ -7,11 +7,18 @@ import java.util.Scanner;
 
 public class MenuClientes 
 {
-    public void clientemenu(Cliente cliente)
+    private Cliente clienteactual;
+
+    public MenuClientes(Cliente clienteactual)
+    {
+        this.clienteactual=clienteactual;
+    }
+
+    public void clientemenu()
     {
         int k=1;
         Scanner lector = new Scanner(System.in);
-        System.out.println("BIENVENIDO CLIENTE "+cliente.getNombreusu());
+        System.out.println("BIENVENIDO CLIENTE "+clienteactual.getNombreusu());
         do{
             System.out.println("Elige el proceso que deseas ejecutar:");
             System.out.println("1) AGREGAR PRODUCTO AL CARRITO");
@@ -30,7 +37,7 @@ public class MenuClientes
                     break;
                 
                 case 2:
-                    registrarDomicilio(cliente);
+                    registrarDomicilio(clienteactual);
                     break;
 
                 case 3:

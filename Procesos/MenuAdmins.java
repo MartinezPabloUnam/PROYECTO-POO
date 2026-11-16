@@ -5,11 +5,18 @@ import java.util.Scanner;
 
 public class MenuAdmins 
 {
-    public void adminmenu(Admin administrador)
+    private Admin adminactual;
+
+    public MenuAdmins(Admin adminlist)
+    {
+        this.adminactual=adminlist;
+    }
+
+    public void adminmenu()
     {
         int k=1;
         Scanner lector = new Scanner(System.in);
-        System.out.println("BIENVENIDO ADMINISTRADOR "+administrador.getNombreusu());
+        System.out.println("BIENVENIDO ADMINISTRADOR "+adminactual.getNombreusu());
         do{
             System.out.println("Elige el proceso que deseas ejecutar:");
             System.out.println("1) ALTA DE PRODUCTOS");

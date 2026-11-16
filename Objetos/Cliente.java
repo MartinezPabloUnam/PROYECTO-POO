@@ -15,6 +15,8 @@ public class Cliente extends Usuario
         this.telefono=telefono;
         this.nombre = nombre;
         this.compras = compras;
+        this.mediosdepago = new ArrayList<>();
+        this.domicilios= new ArrayList<>();
     }
 
     public void setnewdom(Domicilio newdom)
