@@ -5,15 +5,26 @@ import Objetos.PayPal;
 import Objetos.TarjetaCredito;
 import java.util.Scanner;
 
+/**
+ * @author Francisco Javier Montiel Montejano, Pablo Issac Martinez Giles,Angel Uriel Gutierrez Contreras
+ * MenuClientes
+ */
 public class MenuClientes 
 {
     private Cliente clienteactual;
 
+    /**
+     * Contructor de una instancia de menu de clientes
+     * @param clienteactual recibe como parametro el cliente que entrara en el menu
+     */
     public MenuClientes(Cliente clienteactual)
     {
         this.clienteactual=clienteactual;
     }
 
+    /**
+     * Menu prinicpal del menu de clientes, presenta las opciones a poder realizar por cada cliente
+     */
     public void clientemenu()
     {
         int k=1;
@@ -76,6 +87,10 @@ public class MenuClientes
         }while(k==1);
     }
 
+    /**
+     * Metodo para registrar un domicilio nuevo para el cliente
+     * @param cliente recibe una instancia del cliente al que se le agregar aeste domicilio nuevo
+     */
     public void registrarDomicilio(Cliente cliente)
     {
         Scanner lector= new Scanner(System.in);
@@ -83,8 +98,9 @@ public class MenuClientes
         String calle;
         String colonia;
         int num; 
+        boolean continuar;
         do{
-            boolean continuar=false;
+            continuar=false;
             System.out.println("Ingresa una calle:");
             calle = lector.nextLine();
             System.out.println("Ingresa una colonia:");
@@ -92,7 +108,7 @@ public class MenuClientes
             System.out.println("Ingresa un numero exterior:");
             num = lector2.nextInt();
             for(Domicilio dom:cliente.getDomicilios()){
-                if(dom.getCalle().equalsIgnoreCase(calle)&& dom.getColonia().equalsIgnoreCase(colonia)&& num==dom.getNumext()){
+                if(dom.getCalle().equalsIgnoreCase(calle) && dom.getColonia().equalsIgnoreCase(colonia) && dom.getNumext()==num){
                     System.out.println("Los datos ingresados ya existen en tus domicilios ingresados anteriormente vulevelo a intentar");
                     continuar=true;
                     break;
@@ -101,19 +117,22 @@ public class MenuClientes
                     continuar=false;
                 }
             }            
-        }while (continuar);                 
+        }while (continuar==true);                 
         Domicilio nuevodom = new Domicilio(calle, colonia, num);
         cliente.setnewdom(nuevodom);
     }
 
-
+    /**
+     * Metodo para que el cliente registre un metodo de pago nuevo
+     * @param cliente Recibe una instancia de cliente al que se le agregara el metodo de pago nuevo
+     */
     public void registrarNewMetodopago(Cliente cliente)
     {
         Scanner reader = new Scanner(System.in);
         Scanner reader2 = new Scanner(System.in);
         System.out.println("¿QUE METODO DE PAGO DESEAS AGREGAR?");
         System.out.println("1) TARJETA DE CREDITO");
-        System.out.println("2) PAYPAL");
+        System.out.println("2)PAYPAL");
         int decision = reader.nextInt();
         switch(decision)
         {

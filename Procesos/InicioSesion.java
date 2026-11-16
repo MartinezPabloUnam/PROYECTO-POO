@@ -5,19 +5,28 @@ import Objetos.Cliente;
 import Objetos.Usuario;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * @author Francisco Javier Montiel Montejano, Pablo Issac Martinez Giles,Angel Uriel Gutierrez Contreras
+ * InicioSesion
+ */
 public class InicioSesion 
 {
 
    ArrayList <Usuario> clientes_sistema;
    ArrayList <Usuario> admins_sistema;
 
+   /**
+    *Contructor de la intancia de inicio de sesion este inicializa las listas de administradores y de clientes 
+    */
    public InicioSesion()
    {
       this.admins_sistema=new ArrayList<>();
       this.clientes_sistema=new ArrayList<>();
    }
 
+   /**
+    * metodo que sirve para poder acceder al sistema del menu de clientes o administrador segun el nombre de usuario ingresado
+    */
    public void EntrarSistema()
    {
          Scanner lector = new Scanner(System.in);
@@ -53,6 +62,9 @@ public class InicioSesion
 
    }
 
+   /**
+    * Metodo para agregar un nuevo cliente a la lista de clientes validando que no se repitan usuarios
+    */
    public void RegistroClientes()
    {
       Scanner lector = new Scanner(System.in);

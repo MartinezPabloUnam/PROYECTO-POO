@@ -1,6 +1,6 @@
 package Objetos;
 /**
- * @author Francisco Javier Montiel Montejano, Pablo Issac Martinez,Angel Uriel Gutierrez Contreras 
+ * @author Francisco Javier Montiel Montejano, Pablo Issac Martinez Giles,Angel Uriel Gutierrez Contreras 
  * Admin
  */
 public class Admin extends Usuario
