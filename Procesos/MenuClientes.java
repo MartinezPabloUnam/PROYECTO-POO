@@ -113,9 +113,6 @@ public class MenuClientes
                     continuar=true;
                     break;
                 }
-                else{
-                    continuar=false;
-                }
             }            
         }while (continuar==true);                 
         Domicilio nuevodom = new Domicilio(calle, colonia, num);
