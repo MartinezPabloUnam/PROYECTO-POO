@@ -15,6 +15,17 @@ public class PayPal extends MedioPago
 
     public void mostrarDetalles()
     {
-        System.out.println("Se ha enviado una confirmacion de pago a: "+this.correo);
+        System.out.println("Paypal");
+        System.out.println("Correo electronico: "+this.correo);
     }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+
 }

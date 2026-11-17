@@ -1,0 +1,186 @@
+package Procesos;
+
+import Objetos.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Pedido {
+
+    private float precioTotal;
+    private LocalDateTime fechaHora;
+    private LocalDate fechaEntrega;
+    private ArrayList<Producto> listaProductosFinal;
+    private ArrayList<Domicilio> listaDomicilios;
+    private ArrayList<MedioPago> listaMedioPago;
+    private Cliente cliente;
+    private Domicilio domicilioFinal;
+    private MedioPago medioPagoCliente;
+    private boolean confirmado;
+
+    public Pedido(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public void confirmarPedido() {
+        confirmado=false;
+        Scanner lector = new Scanner(System.in);
+        precioTotal = cliente.getCompras().getPrecioTotal();
+        this.listaProductosFinal = new ArrayList<>(cliente.getCompras().getListaCarrito());
+        this.listaDomicilios = new ArrayList<>(cliente.getDomicilios());
+        this.listaMedioPago = new ArrayList<>(cliente.getMediosdepago());
+        if (listaDomicilios.isEmpty() || listaProductosFinal.isEmpty() || listaMedioPago.isEmpty()) {
+            System.out.println("Error al proceder con el pedido");
+            return;
+        }
+        int i = 1;
+        int opcion;
+        for (Domicilio elemento : listaDomicilios) {
+            System.out.println("Domicilio " + i);
+            System.out.println("Calle: " + elemento.getCalle() + " | Colonia: " + elemento.getColonia() + " | Numero: " + elemento.getNumext());
+            i++;
+
+        }
+        System.out.println("Elija a que domicilio enviar el pedido");
+        domicilioFinal = new Domicilio("", "", 0);
+        try {
+            opcion = lector.nextInt();
+            if (opcion <= 0 || opcion > listaDomicilios.size()) {
+                System.out.println("No existe el domicilio");
+                return;
+            }
+            domicilioFinal = listaDomicilios.get(opcion - 1);
+        } catch (Exception e) {
+            System.out.println("Error, algo salio mal");
+            return;
+        }
+        i = 1;
+        for (MedioPago elemento : listaMedioPago) {
+            System.out.println("Medio de Pago " + i);
+            elemento.mostrarDetalles();
+            i++;
+        }
+        System.out.println("Elija que metodo de pago usar");
+        medioPagoCliente = null;
+        try {
+            opcion = lector.nextInt();
+            if (opcion <= 0 || opcion > listaMedioPago.size()) {
+                System.out.println("No existe el metodo de pago");
+                return;
+            }
+            medioPagoCliente = listaMedioPago.get(opcion - 1);
+            if (medioPagoCliente.getClass().getSimpleName().equals("PayPal")) {
+                PayPal paypal = (PayPal) medioPagoCliente;
+                System.out.println("Ingrese la contraseña");
+                try {
+                    lector.nextLine();
+                    String contraseña = lector.nextLine();
+                    if (paypal.getContraseña().equals(contraseña)) {
+                        System.out.println("Contraseña aceptada");
+                        System.out.println("Se ha enviado una confirmacion de pago a: " + paypal.getCorreo());
+                    } else {
+                        System.out.println("Contraseña incorrecta");
+                        return;
+                    }
+                } catch (Exception e) {
+                    System.out.println("Error, algo salio mal");
+                    return;
+                }
+            } else {
+                TarjetaCredito tarjeta = (TarjetaCredito) medioPagoCliente;
+                System.out.println("Ingrese el NIP");
+                try {
+                    int nip = lector.nextInt();
+                    if (tarjeta.getNip() == nip) {
+                        System.out.println("NIP aceptado");
+                        System.out.println("Se ha enviado una confirmacion a la banca electronica de la tarjeta: *****" + tarjeta.getNumtarj() % 10000);
+                    } else {
+                        System.out.println("NIP incorrecto");
+                        return;
+                    }
+                } catch (Exception e) {
+                    System.out.println("Error, algo salio mal");
+                    return;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error, algo salio mal");
+            return;
+        }
+        System.out.println("¿Desea confirmar su pedido? Si(s)/No(s)");
+        try {
+            lector.nextLine();
+            String caracter = lector.nextLine();
+            if (caracter.equalsIgnoreCase("s")) {
+                System.out.println("Confirmación del pedido");
+                System.out.println("Precio Total a Pagar: $" + this.precioTotal + "mxn");
+                System.out.println("Domicilio seleccionado:");
+                System.out.println("Calle: " + domicilioFinal.getCalle() + " Colonia: " + domicilioFinal.getColonia() + " Numero: " + domicilioFinal.getNumext());
+                System.out.println("Metodo de Pago");
+                System.out.println(medioPagoCliente.getClass().getSimpleName());
+                medioPagoCliente.mostrarDetalles();
+                confirmado = true;
+                System.out.println("Pedido confirmado");
+                return;
+            }
+            if (caracter.equalsIgnoreCase("n")) {
+                System.out.println("Pedido no confirmado");
+            }
+        } catch (Exception e) {
+            System.out.println("Ups, ocurrio un error");
+        }
+
+    }
+
+    public void imprimirTicket() {
+        if (confirmado) {
+            Random random = new Random();
+            fechaHora = LocalDateTime.now();
+            DateTimeFormatter fechaActual = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+            fechaEntrega = fechaHora.toLocalDate().plusDays(random.nextInt(7, 15));
+            DateTimeFormatter entrega = DateTimeFormatter.ISO_LOCAL_DATE;
+            File Pedido = new File("CarpetaRecibo");
+            File Recibo = new File(Pedido, "Recibo"+cliente.getNombre()+".txt");
+            if (!Pedido.exists()) {
+                Pedido.mkdirs();
+            }
+            try (FileWriter escritor = new FileWriter(Recibo)) {
+                escritor.write("Recibo de compra\n");
+                escritor.write("Hora de compra\n");
+                escritor.write(fechaHora.format(fechaActual) + "\n");
+                escritor.write("Fecha de Entrega\n");
+                escritor.write(fechaEntrega.format(entrega) + "\n");
+                for (Producto elemento : listaProductosFinal) {
+                    escritor.write("Nombre del producto: " + elemento.getNombreProducto() + " | ID: " + elemento.getId() + " | Categoria: " + elemento.getCategoria() + " | Precio: " + elemento.getPrecio() + " | Cantidad: " + elemento.getCantidad() + "\n");
+                }
+                escritor.write("Precio Total: " + precioTotal + "\n");
+                escritor.write("Domicilio\n");
+                escritor.write("Calle: " + domicilioFinal.getCalle() + " Colonia: " + domicilioFinal.getColonia() + " Numero: " + domicilioFinal.getNumext() + "\n");
+                escritor.write("Medio de Pago\n");
+                escritor.write(medioPagoCliente.getClass().getSimpleName() + "\n");
+                if (medioPagoCliente.getClass().getSimpleName().equals("PayPal")) {
+                    PayPal paypal = (PayPal) medioPagoCliente;
+                    escritor.write(paypal.getCorreo() + "\n");
+                } else {
+                    TarjetaCredito tarjeta = (TarjetaCredito) medioPagoCliente;
+                    escritor.write(tarjeta.getNumtarj() % 10000 + "\n");
+                }
+            } catch (IOException e) {
+                System.out.println("Ocurrio un error al imprimir el recibo.");
+                return;
+            }
+            cliente.getCompras().getListaCarrito().clear();
+            cliente.getCompras().setPrecioTotal(0);
+            confirmado=false;
+        }else{
+            System.out.println("El pedido no ha sido confirmado");
+        }
+        
+    }
+}

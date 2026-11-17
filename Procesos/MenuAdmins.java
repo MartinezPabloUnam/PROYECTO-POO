@@ -26,11 +26,40 @@ public class MenuAdmins
             switch(decision)
             {
                 case 1:
-                    //metodo alta de productos
+                    System.out.println("Ingrese los datos del producto");
+                    String nombre,categoria;
+                    int id,cantidad;
+                    float precio;
+                    try {
+                        System.out.println("Nombre: ");
+                        lector.nextLine();
+                        nombre=lector.nextLine();
+                        System.out.println("ID: ");
+                        id=lector.nextInt();
+                        lector.nextLine();
+                        System.out.println("Categoria: ");
+                        categoria=lector.nextLine();
+                        System.out.println("Cantidad: ");
+                        cantidad=lector.nextInt();
+                        System.out.println("Precio: ");
+                        precio=lector.nextFloat();
+                        DarAltaProducto.darAltaProducto(precio, id, nombre, categoria, cantidad);
+                    } catch (Exception e) {
+                        System.out.println("Ups, ocurrio un error");
+                    }
                     break;
                 
                 case 2:
-                    //metodo modificacion de productos
+                    try {
+                        System.out.println("Ingrese el id del producto que desee modificar");
+                        id=lector.nextInt();
+                        System.out.println("Ingrese el nuevo precio");
+                        precio=lector.nextFloat();
+                        DarAltaProducto.modificarPrecio(id, precio);
+                    } catch (Exception e) {
+                        System.out.println("Ups, ocurrio un error");
+                    }
+                    
                     break;
 
                 case 3:

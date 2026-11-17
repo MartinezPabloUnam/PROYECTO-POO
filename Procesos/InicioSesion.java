@@ -80,12 +80,17 @@ public class InicioSesion
       }  
       else
       {
-       System.out.println("Por favor ingresa tu telefono:");
-       int numero = read.nextInt();
-       Carrito carroclient = new Carrito();
-       Cliente newmiembro = new Cliente(nombre,nombreusu,numero,carroclient);
-       clientes_sistema.add(newmiembro);
-       System.out.println("REGISTRO EXITOSO!!!");
+         try {
+            System.out.println("Por favor ingresa tu telefono:");
+            long numero = read.nextLong();
+            Carrito carroclient = new Carrito();
+            Cliente newmiembro = new Cliente(nombre,nombreusu,numero,carroclient);
+            clientes_sistema.add(newmiembro);
+            System.out.println("REGISTRO EXITOSO!!!");
+         } catch (Exception e) {
+            System.out.println("Ups, ha ocurrido un error");
+         }
+      
       }
       
    }  

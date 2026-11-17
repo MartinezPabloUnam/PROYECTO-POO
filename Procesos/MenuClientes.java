@@ -17,6 +17,7 @@ public class MenuClientes
     public void clientemenu()
     {
         int k=1;
+        Pedido pedido= new Pedido(clienteactual);
         Scanner lector = new Scanner(System.in);
         System.out.println("BIENVENIDO CLIENTE "+clienteactual.getNombreusu());
         do{
@@ -30,10 +31,24 @@ public class MenuClientes
             System.out.println("7) IMPRIMIR TICKET DE UN PEDIDO");
             System.out.println("8) REGRESAR AL MENU PRINCIPAL");
             int decision = lector.nextInt();
+            lector.nextLine();
+            int id,cantidad;
             switch(decision)
             {
                 case 1:
-                    //metodo agregar producto carrito
+                    DarAltaProducto.mostrarProductos();
+                    if(DarAltaProducto.getListaProductos().isEmpty()){
+                        return;
+                    }
+                    System.out.println("Igrese el ID del producto que desee agregar");
+                    try {
+                        id=lector.nextInt();
+                        System.out.println("Ingrese la cantidad que desee agregar");
+                        cantidad=lector.nextInt();
+                        clienteactual.getCompras().agregarProductoCarrito(id, cantidad);
+                    } catch (Exception e) {
+                        System.out.println("Ups, ha ocurrido un error");
+                    }
                     break;
                 
                 case 2:
@@ -41,23 +56,23 @@ public class MenuClientes
                     break;
 
                 case 3:
-                    //metodo registrar medio de pago
+                    registrarNewMetodopago(clienteactual);
                     break;
                 
                 case 4:
-                    //metodo confirmar pedido
+                    pedido.confirmarPedido();
                     break;
 
                 case 5:
-                    //metodo vaciar carrito
+                    clienteactual.getCompras().vaciarCarrito();
                     break;
 
                 case 6:
-                    //metodo consultar carrito
+                    clienteactual.getCompras().mostrarCarrito();
                     break;
 
                 case 7:
-                    //metodo imprimir ticket
+                    pedido.imprimirTicket();
                     break;
 
 
@@ -66,7 +81,7 @@ public class MenuClientes
                     System.out.println("¿DESEA SALIR DEL MENU?");
                     System.out.println("INGRESA s PARA SI / n PARA NO");
                     String decision2= lector2.nextLine();
-                    if(decision2.equals("n"))
+                    if(decision2.equalsIgnoreCase("s"))
                     {
                         System.out.println("REGRESANDO AL MENU PRINCIPAL.....");
                         k=0;
@@ -100,6 +115,7 @@ public class MenuClientes
         System.out.println("1) TARJETA DE CREDITO");
         System.out.println("2) PAYPAL");
         int decision = reader.nextInt();
+        reader.nextLine();
         switch(decision)
         {
             case 1:
@@ -107,6 +123,7 @@ public class MenuClientes
                 int num= reader.nextInt();
                 System.out.println("Ingresa el NIP de dicha tarjeta:");
                 int nip= reader.nextInt();
+                reader.nextLine();
                 TarjetaCredito newtar = new TarjetaCredito(num,nip);
                 cliente.setnewmetPago(newtar);
                 break;

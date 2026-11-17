@@ -4,12 +4,12 @@ import java.util.ArrayList;
 public class Cliente extends Usuario 
 {
     private String nombre;
-    private int telefono;
+    private long telefono;
     private Carrito compras;
     private ArrayList<MedioPago> mediosdepago;
     private ArrayList<Domicilio> domicilios;
 
-    public Cliente(String nombre,String nombreusu ,int telefono,Carrito compras )
+    public Cliente(String nombre,String nombreusu ,long  telefono,Carrito compras )
     {
         super(nombreusu);
         this.telefono=telefono;
@@ -29,5 +29,26 @@ public class Cliente extends Usuario
         mediosdepago.add(newmet);
     }
 
+    public Carrito getCompras() {
+        return compras;
+    }
+
+    public ArrayList<Domicilio> getDomicilios() {
+        return domicilios;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public long getTelefono() {
+        return telefono;
+    }
+
+    public ArrayList<MedioPago> getMediosdepago() {
+        return mediosdepago;
+    }
+
+    
 
 }

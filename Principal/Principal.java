@@ -1,7 +1,7 @@
 
 package Principal;
 
-import Procesos. InicioSesion;
+import Procesos.InicioSesion;
 import java.util.Scanner;
 
 
@@ -19,6 +19,7 @@ public class Principal
             System.out.println("2) Registrarse como Cliente");
             System.out.println("3) Salir");
             int decision= lector.nextInt();
+            lector.nextLine();
 
             switch (decision)
             {

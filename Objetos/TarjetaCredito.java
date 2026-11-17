@@ -15,6 +15,17 @@ public class TarjetaCredito extends MedioPago
 
     public void mostrarDetalles()
     {
-        System.out.println("Se ha enviado una confirmacion a la banca electronica de la tarjeta: *****"+(this.numtarj/1000));
+        System.out.println("Tarjeta");
+        System.out.println("Numero de tarjeta: "+this.numtarj%10000);
     }
+
+    public int getNumtarj() {
+        return numtarj;
+    }
+
+    public int getNip() {
+        return nip;
+    }
+
+    
 }
