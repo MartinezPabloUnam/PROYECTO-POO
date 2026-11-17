@@ -1,4 +1,5 @@
 package Objetos;
+import Procesos.Pedido;
 import java.util.ArrayList;
 
 public class Cliente extends Usuario 
@@ -8,6 +9,7 @@ public class Cliente extends Usuario
     private Carrito compras;
     private ArrayList<MedioPago> mediosdepago;
     private ArrayList<Domicilio> domicilios;
+    private ArrayList<Pedido> historialPedido;
 
     public Cliente(String nombre,String nombreusu ,long  telefono,Carrito compras )
     {
@@ -17,6 +19,7 @@ public class Cliente extends Usuario
         this.compras = compras;
         this.mediosdepago = new ArrayList<>();
         this.domicilios= new ArrayList<>();
+        this.historialPedido= new ArrayList<>();
     }
 
     public void setnewdom(Domicilio newdom)
@@ -47,6 +50,14 @@ public class Cliente extends Usuario
 
     public ArrayList<MedioPago> getMediosdepago() {
         return mediosdepago;
+    }
+
+    public void setHistorialPedido(Pedido historialPedido) {
+        this.historialPedido.add(historialPedido);
+    }
+
+    public ArrayList<Pedido> getHistorialPedido() {
+        return historialPedido;
     }
 
     

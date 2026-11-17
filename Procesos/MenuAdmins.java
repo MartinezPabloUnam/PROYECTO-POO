@@ -16,13 +16,6 @@ public class MenuAdmins
     {
         int k=1;
         Scanner lector = new Scanner(System.in);
-        
-        DarAltaProducto.darAltaProducto(64, 01, "leche", "lacteos", 10);
-        DarAltaProducto.darAltaProducto(22, 02, "Papas", "Frituras", 20);
-        DarAltaProducto.darAltaProducto(87, 03, "Flechas de carne", "Carnes", 5);
-        DarAltaProducto.darAltaProducto(15, 04, "Agua", "liquidos", 20);
-        DarAltaProducto.darAltaProducto(54, 05, "Suavitel", "limpieza del hogar", 8);
-
         System.out.println("BIENVENIDO ADMINISTRADOR "+adminactual.getNombreusu());
         do{
             System.out.println("Elige el proceso que deseas ejecutar:");
@@ -74,7 +67,7 @@ public class MenuAdmins
                     System.out.println("¿DESEA SALIR DEL MENU?");
                     System.out.println("INGRESA s PARA SI / n PARA NO");
                     String decision2= lector2.nextLine();
-                    if(decision2.equals("n"))
+                    if(decision2.equals("s"))
                     {
                         System.out.println("REGRESANDO AL MENU PRINCIPAL.....");
                         k=0;

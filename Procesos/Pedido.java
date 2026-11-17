@@ -22,17 +22,26 @@ public class Pedido {
     private Cliente cliente;
     private Domicilio domicilioFinal;
     private MedioPago medioPagoCliente;
-    private boolean confirmado;
+    private boolean confirmado=false;
+    private DateTimeFormatter fechaActual;
+    private DateTimeFormatter entrega; 
 
     public Pedido(Cliente cliente) {
         this.cliente = cliente;
     }
 
     public void confirmarPedido() {
-        confirmado=false;
+        if(confirmado){
+            System.out.println("El pedido ya fue confirmado.");
+            return;
+        }
         Scanner lector = new Scanner(System.in);
         precioTotal = cliente.getCompras().getPrecioTotal();
-        this.listaProductosFinal = new ArrayList<>(cliente.getCompras().getListaCarrito());
+        listaProductosFinal=new ArrayList<>();
+        for (Producto elemento:cliente.getCompras().getListaCarrito()){
+            Producto copia = new Producto(elemento.getId(),elemento.getNombreProducto(),elemento.getCategoria(),elemento.getPrecio(),elemento.getCantidad());
+            listaProductosFinal.add(copia);
+        }
         this.listaDomicilios = new ArrayList<>(cliente.getDomicilios());
         this.listaMedioPago = new ArrayList<>(cliente.getMediosdepago());
         if (listaDomicilios.isEmpty() || listaProductosFinal.isEmpty() || listaMedioPago.isEmpty()) {
@@ -125,28 +134,37 @@ public class Pedido {
                 System.out.println("Metodo de Pago");
                 System.out.println(medioPagoCliente.getClass().getSimpleName());
                 medioPagoCliente.mostrarDetalles();
+                fechaHora = LocalDateTime.now();
+                Random random = new Random();
+                fechaActual = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+                fechaEntrega = fechaHora.toLocalDate().plusDays(random.nextInt(7, 15));
+                entrega = DateTimeFormatter.ISO_LOCAL_DATE;
                 confirmado = true;
+                cliente.setHistorialPedido(this);
                 System.out.println("Pedido confirmado");
+                imprimirTicket();
+                cliente.getCompras().getListaCarrito().clear();
+                cliente.getCompras().setPrecioTotal(0);
                 return;
             }
             if (caracter.equalsIgnoreCase("n")) {
                 System.out.println("Pedido no confirmado");
+                confirmado=false;
             }
+
         } catch (Exception e) {
             System.out.println("Ups, ocurrio un error");
         }
+        
 
     }
 
     public void imprimirTicket() {
         if (confirmado) {
-            Random random = new Random();
-            fechaHora = LocalDateTime.now();
-            DateTimeFormatter fechaActual = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-            fechaEntrega = fechaHora.toLocalDate().plusDays(random.nextInt(7, 15));
-            DateTimeFormatter entrega = DateTimeFormatter.ISO_LOCAL_DATE;
+            String hora = fechaHora.format(fechaActual);
             File Pedido = new File("CarpetaRecibo");
-            File Recibo = new File(Pedido, "Recibo"+cliente.getNombre()+".txt");
+            File Recibo = new File(Pedido, "Recibo" + cliente.getNombre() + hora + ".txt");
+
             if (!Pedido.exists()) {
                 Pedido.mkdirs();
             }
@@ -175,12 +193,23 @@ public class Pedido {
                 System.out.println("Ocurrio un error al imprimir el recibo.");
                 return;
             }
-            cliente.getCompras().getListaCarrito().clear();
-            cliente.getCompras().setPrecioTotal(0);
-            confirmado=false;
-        }else{
+        } else {
             System.out.println("El pedido no ha sido confirmado");
         }
-        
+
+    }
+
+    public void mostrarPedido(){
+        if(!confirmado){
+            System.out.println("El pedido no ha sido confirmado.");
+            return;
+        }
+        System.out.println("Precio Total a Pagar: $" + this.precioTotal + "mxn");
+        System.out.println("Domicilio seleccionado:");
+        System.out.println("Calle: " + domicilioFinal.getCalle() + " Colonia: " + domicilioFinal.getColonia() + " Numero: " + domicilioFinal.getNumext());
+        System.out.println("Metodo de Pago");
+        System.out.println(medioPagoCliente.getClass().getSimpleName());
+        medioPagoCliente.mostrarDetalles();
     }
 }
+
