@@ -19,7 +19,16 @@ public class InicioSesion
    }
 
    public void EntrarSistema()
-   {
+   {     
+         Admin Francisco=new Admin("Francho");
+         Admin Pablo=new Admin("Pavo");
+         Admin Angel=new Admin("Engel");
+         Admin Beto=new Admin("Robert");
+         admins_sistema.add(Francisco);
+         admins_sistema.add(Pablo);
+         admins_sistema.add(Angel);
+         admins_sistema.add(Beto);
+
          Scanner lector = new Scanner(System.in);
          System.out.println("Porfavor ingresa tu nombre de usuario:");
          String nombreusu= lector.nextLine();
