@@ -15,6 +15,7 @@ public class MenuClientes {
     }
 
     public void clientemenu() {
+        DarAltaProducto.inicializarProductos();
         int k = 1;
         Scanner lector = new Scanner(System.in);
         System.out.println("BIENVENIDO CLIENTE " + clienteactual.getNombreusu());
@@ -28,8 +29,15 @@ public class MenuClientes {
             System.out.println("6) CONSULTAR CARRITO");
             System.out.println("7) IMPRIMIR TICKET DE UN PEDIDO");
             System.out.println("8) REGRESAR AL MENU PRINCIPAL");
-            int decision = lector.nextInt();
-            lector.nextLine();
+            int decision;
+            try {
+                decision=lector.nextInt();
+                lector.nextLine();
+            } catch (Exception e) {
+                System.out.println("Ha ocurrido un error");
+                lector.nextLine();
+                continue;
+            }
             int id, cantidad;
             switch (decision) {
                 case 1:
@@ -46,6 +54,7 @@ public class MenuClientes {
                         clienteactual.getCompras().agregarProductoCarrito(id, cantidad);
                     } catch (Exception e) {
                         System.out.println("Ups, ha ocurrido un error");
+                        lector.nextLine();
                     }
                     break;
 
@@ -81,11 +90,12 @@ public class MenuClientes {
                         System.out.println("Ingrese el pedido que desee imprimir");
                         try {
                             int opcion = lector.nextInt();
-                            if(opcion>0 && opcion<clienteactual.getHistorialPedido().size()){
+                            if (opcion > 0 && opcion <= clienteactual.getHistorialPedido().size()) {
                                 clienteactual.getHistorialPedido().get(opcion - 1).imprimirTicket();
                             }
                         } catch (Exception e) {
                             System.out.println("Ups, ocurrio un error");
+                            lector.nextLine();
                         }
                     }
                     break;
@@ -112,7 +122,13 @@ public class MenuClientes {
         System.out.println("Ingresa una colonia:");
         String colonia = lector.nextLine();
         System.out.println("Ingresa un numero exterior:");
-        int num = lector2.nextInt();
+        int num;
+        try {
+            num=lector2.nextInt();
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error");
+            return;
+        }
 
         Domicilio nuevodom = new Domicilio(calle, colonia, num);
         cliente.setnewdom(nuevodom);
@@ -124,32 +140,39 @@ public class MenuClientes {
         System.out.println("¿QUE METODO DE PAGO DESEAS AGREGAR?");
         System.out.println("1) TARJETA DE CREDITO");
         System.out.println("2) PAYPAL");
-        int decision = reader.nextInt();
-        reader.nextLine();
-        switch (decision) {
-            case 1:
-                System.out.println("Ingresa el numero de tu tarjeta a registrar:");
-                int num = reader.nextInt();
-                System.out.println("Ingresa el NIP de dicha tarjeta:");
-                int nip = reader.nextInt();
-                reader.nextLine();
-                TarjetaCredito newtar = new TarjetaCredito(num, nip);
-                cliente.setnewmetPago(newtar);
-                break;
+        int decision;
+        try {
+            decision = reader.nextInt();
+            reader.nextLine();
+            switch (decision) {
+                case 1:
+                    System.out.println("Ingresa el numero de tu tarjeta a registrar:");
+                    int num = reader.nextInt();
+                    System.out.println("Ingresa el NIP de dicha tarjeta:");
+                    int nip = reader.nextInt();
+                    reader.nextLine();
+                    TarjetaCredito newtar = new TarjetaCredito(num, nip);
+                    cliente.setnewmetPago(newtar);
+                    break;
 
-            case 2:
-                System.out.println("Ingresa tu correo electronico a asociar:");
-                String correo = reader2.nextLine();
-                System.out.println("Ingresa la contraseña de dicho PAYPAL:");
-                String contrasena = reader2.nextLine();
-                PayPal newpay = new PayPal(correo, contrasena);
-                cliente.setnewmetPago(newpay);
-                break;
+                case 2:
+                    System.out.println("Ingresa tu correo electronico a asociar:");
+                    String correo = reader2.nextLine();
+                    System.out.println("Ingresa la contraseña de dicho PAYPAL:");
+                    String contrasena = reader2.nextLine();
+                    PayPal newpay = new PayPal(correo, contrasena);
+                    cliente.setnewmetPago(newpay);
+                    break;
 
-            default:
-                System.out.println("Ingrese un dato valido");
-                break;
+                default:
+                    System.out.println("Ingrese un dato valido");
+                    break;
 
+            }
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error");
+            reader.nextLine();
         }
+
     }
 }

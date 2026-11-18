@@ -67,6 +67,7 @@ public class Pedido {
             domicilioFinal = listaDomicilios.get(opcion - 1);
         } catch (Exception e) {
             System.out.println("Error, algo salio mal");
+            lector.nextLine();
             return;
         }
         i = 1;
@@ -99,6 +100,7 @@ public class Pedido {
                     }
                 } catch (Exception e) {
                     System.out.println("Error, algo salio mal");
+                    lector.nextLine();
                     return;
                 }
             } else {
@@ -106,25 +108,27 @@ public class Pedido {
                 System.out.println("Ingrese el NIP");
                 try {
                     int nip = lector.nextInt();
+                    lector.nextLine();
                     if (tarjeta.getNip() == nip) {
                         System.out.println("NIP aceptado");
-                        System.out.println("Se ha enviado una confirmacion a la banca electronica de la tarjeta: *****" + tarjeta.getNumtarj() % 10000);
+                        System.out.println("Se ha enviado una confirmacion a la banca electronica de la tarjeta: *******" + tarjeta.getNumtarj() % 10000);
                     } else {
                         System.out.println("NIP incorrecto");
                         return;
                     }
                 } catch (Exception e) {
                     System.out.println("Error, algo salio mal");
+                    lector.nextLine();
                     return;
                 }
             }
         } catch (Exception e) {
             System.out.println("Error, algo salio mal");
+            lector.nextLine();
             return;
         }
         System.out.println("¿Desea confirmar su pedido? Si(s)/No(s)");
         try {
-            lector.nextLine();
             String caracter = lector.nextLine();
             if (caracter.equalsIgnoreCase("s")) {
                 System.out.println("Confirmación del pedido");
@@ -132,7 +136,6 @@ public class Pedido {
                 System.out.println("Domicilio seleccionado:");
                 System.out.println("Calle: " + domicilioFinal.getCalle() + " Colonia: " + domicilioFinal.getColonia() + " Numero: " + domicilioFinal.getNumext());
                 System.out.println("Metodo de Pago");
-                System.out.println(medioPagoCliente.getClass().getSimpleName());
                 medioPagoCliente.mostrarDetalles();
                 fechaHora = LocalDateTime.now();
                 Random random = new Random();
@@ -154,6 +157,7 @@ public class Pedido {
 
         } catch (Exception e) {
             System.out.println("Ups, ocurrio un error");
+            lector.nextLine();
         }
         
 
@@ -187,11 +191,10 @@ public class Pedido {
                     escritor.write(paypal.getCorreo() + "\n");
                 } else {
                     TarjetaCredito tarjeta = (TarjetaCredito) medioPagoCliente;
-                    escritor.write(tarjeta.getNumtarj() % 10000 + "\n");
+                    escritor.write("*******"+tarjeta.getNumtarj() % 10000 + "\n");
                 }
             } catch (IOException e) {
                 System.out.println("Ocurrio un error al imprimir el recibo.");
-                return;
             }
         } else {
             System.out.println("El pedido no ha sido confirmado");
