@@ -16,18 +16,20 @@ public class InicioSesion
    {
       this.admins_sistema=new ArrayList<>();
       this.clientes_sistema=new ArrayList<>();
-   }
-
-   public void EntrarSistema()
-   {     
+      
          Admin Francisco=new Admin("Francho");
          Admin Pablo=new Admin("Pavo");
          Admin Angel=new Admin("Engel");
          Admin Beto=new Admin("Robert");
+         
          admins_sistema.add(Francisco);
          admins_sistema.add(Pablo);
          admins_sistema.add(Angel);
          admins_sistema.add(Beto);
+   }
+
+   public void EntrarSistema()
+   {     
 
          Scanner lector = new Scanner(System.in);
          System.out.println("Porfavor ingresa tu nombre de usuario:");
@@ -74,14 +76,25 @@ public class InicioSesion
       
 
       boolean existe=false;
-      for (Usuario u : clientes_sistema) 
+
+      for(Usuario usu : clientes_sistema)
       {
-       if(u.getNombreusu().equals(nombreusu)) 
-       {
-         existe = true;
-         break;
-       }
+         if(usu.getNombreusu().equals(nombreusu))
+         {
+            existe = true;
+            break;
+         }
       }
+
+      for(Usuario usuad : admins_sistema)
+      {
+         if(usuad.getNombreusu().equals(nombreusu))
+         {
+            existe = true;
+            break;
+         }
+      }
+
 
       if(existe) 
       {
