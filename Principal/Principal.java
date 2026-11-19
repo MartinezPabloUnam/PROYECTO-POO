@@ -2,9 +2,15 @@ package Principal;
 
 import Procesos.InicioSesion;
 import java.util.Scanner;
-
+/**
+ * @author Francisco Javier Montiel Montejano, Pablo Issac Martinez Giles,Angel Uriel Gutierrez Contreras
+ * Principal Clase principal
+ */
 public class Principal {
-
+     /**
+     * Metodo princiopal que contienen el menu de inicio al correr el programa
+     * @param args
+     */
     public static void main(String[] args) {
         Scanner lector = new Scanner(System.in);
         InicioSesion ingresosistem = new InicioSesion();

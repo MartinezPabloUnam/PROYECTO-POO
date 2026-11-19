@@ -2,15 +2,24 @@ package Procesos;
 
 import Objetos.Admin;
 import java.util.Scanner;
-
+/**
+ * @author Francisco Javier Montiel Montejano, Pablo Issac Martinez Giles,Angel Uriel Gutierrez Contreras
+ * MenuAdmins
+ */
 public class MenuAdmins {
 
     private Admin adminactual;
-
+    /**
+     * Constructor del MenuAdmins
+     * @param adminlist recibe como paramtero el administrador de la lista de administradores que entrara en el menu
+     */
     public MenuAdmins(Admin adminlist) {
         this.adminactual = adminlist;
     }
 
+    /**
+     * metodo que contoiene el menu principal de administradores con las opciones que este puede realizar
+     */
     public void adminmenu() {
         int k = 1;
         Scanner lector = new Scanner(System.in);

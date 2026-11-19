@@ -26,10 +26,17 @@ public class Pedido {
     private DateTimeFormatter fechaActual;
     private DateTimeFormatter entrega; 
 
+    /**
+     * Contructor de una instancia de pedido
+     * @param cliente recibe como parametro el cliente
+     */
     public Pedido(Cliente cliente) {
         this.cliente = cliente;
     }
 
+    /**
+     * confirmarPedido Metodo que contienen todo el proceso del pago del pedido y las validaciones necesarias para terminar de procesarlo
+     */
     public void confirmarPedido() {
         if(confirmado){
             System.out.println("El pedido ya fue confirmado.");
@@ -163,6 +170,9 @@ public class Pedido {
 
     }
 
+    /**
+     * Metodo que crea una carpeta y un archivo con la informacion del pedido "ticket" con ayuda de File y FileWriter
+     */
     public void imprimirTicket() {
         if (confirmado) {
             String hora = fechaHora.format(fechaActual);
@@ -202,6 +212,9 @@ public class Pedido {
 
     }
 
+    /**
+     * Metodo que sirve para mostrar el pedido si ya fue confirmado
+     */
     public void mostrarPedido(){
         if(!confirmado){
             System.out.println("El pedido no ha sido confirmado.");

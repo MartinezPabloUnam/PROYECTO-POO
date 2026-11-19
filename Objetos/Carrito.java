@@ -2,15 +2,25 @@ package Objetos;
 
 import Procesos.DarAltaProducto;
 import java.util.ArrayList;
-
+/**
+ * @author Francisco Javier Montiel Montejano, Pablo Issac Martinez Giles,Angel Uriel Gutierrez Contreras 
+ * Carrito
+ */
 public class Carrito {
     private ArrayList<Producto> listaCarrito = new ArrayList<>();
     private float precioTotal;
     
-
+    /**
+     * Constructor de la clase carrito
+     */
     public Carrito() {
     }
 
+    /**
+     * Metodo que agrega un producto al carrito
+     * @param id recibe como parametro (Int) el id del producto elegido
+     * @param cantidad recibe la cantidad (Int) de productso comprados
+     */
     public void agregarProductoCarrito(int id, int cantidad){
         Producto producto = DarAltaProducto.elegirProducto(id);
         if(producto==null){
@@ -38,6 +48,9 @@ public class Carrito {
         listaCarrito.add(productoCarrito);
     }
    
+    /**
+     * Metodo para mostrar el listado de productos del carrito
+     */
     public void mostrarCarrito(){
         if(listaCarrito.isEmpty()){
             System.out.println("El carrito se encuentra vacío");
@@ -51,10 +64,17 @@ public class Carrito {
         }
     }
 
+    /**
+     * Getter para poder trabajar con la lista del carrito
+     * @return retorna la listaCarrito que es la lista de productos en el carrito
+     */
     public ArrayList<Producto> getListaCarrito() {
         return listaCarrito;
     }
 
+    /**
+     * Metodo para vaciar el carrito
+     */
     public void vaciarCarrito(){
         for(Producto elemento:listaCarrito){
             Producto productoOriginal = DarAltaProducto.elegirProducto(elemento.getId());
@@ -65,10 +85,18 @@ public class Carrito {
         System.out.println("Se vacio el carrito correctamente");
     }
 
+    /**
+     * Getter del precioTotal 
+     * @return retorna el atributo precioTotal el cual contiene la suma de los precios de todos los productos del carrito
+     */
     public float getPrecioTotal() {
         return precioTotal;
     }
 
+    /**
+     * Setter del precioTotal
+     * @param precioTotal recibe como parametro el nuevo precio total del carrito
+     */ 
     public void setPrecioTotal(float precioTotal) {
         this.precioTotal = precioTotal;
     }
