@@ -180,7 +180,7 @@ public class MenuClientes {
             switch (decision) {
                 case 1:
                     System.out.println("Ingresa el numero de tu tarjeta a registrar:");
-                    int num = reader.nextInt();
+                    long num = reader.nextLong();
                     System.out.println("Ingresa el NIP de dicha tarjeta:");
                     int nip = reader.nextInt();
                     reader.nextLine();

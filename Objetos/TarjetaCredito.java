@@ -6,7 +6,7 @@ package Objetos;
  */
 public class TarjetaCredito implements MedioPago
 {
-    private int numtarj;
+    private long numtarj;
     private int nip;
 
      /**
@@ -14,7 +14,7 @@ public class TarjetaCredito implements MedioPago
      * @param numtarj recibe el numero de la tarjeta instanciada(int)
      * @param nip recibe el nip de la tarjeta instasnciada(int)
      */
-    public TarjetaCredito(int numtarj, int nip)
+    public TarjetaCredito(long  numtarj, int nip)
     {
         this.nip=nip;
         this.numtarj=numtarj;
@@ -36,7 +36,7 @@ public class TarjetaCredito implements MedioPago
      * getter del numero de la tarjeta
      * @return retrona el numerop de la tarjeta
      */
-    public int getNumtarj() {
+    public long getNumtarj() {
         return numtarj;
     }
 

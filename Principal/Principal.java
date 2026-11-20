@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class Principal {
      /**
-     * Metodo princiopal que contienen el menu de inicio al correr el programa
+     * Metodo principal que contienen el menu de inicio al correr el programa
      * @param args
      */
     public static void main(String[] args) {
