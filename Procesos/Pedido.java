@@ -134,7 +134,7 @@ public class Pedido {
             lector.nextLine();
             return;
         }
-        System.out.println("¿Desea confirmar su pedido? Si(s)/No(s)");
+        System.out.println("¿Desea confirmar su pedido? Si(s)/No(n)");
         try {
             String caracter = lector.nextLine();
             if (caracter.equalsIgnoreCase("s")) {

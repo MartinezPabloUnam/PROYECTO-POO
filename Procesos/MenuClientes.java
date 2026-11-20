@@ -189,14 +189,42 @@ public class MenuClientes {
                     break;
 
                 case 2:
-                    System.out.println("Ingresa tu correo electronico a asociar:");
-                    String correo = reader2.nextLine();
-                    System.out.println("Ingresa la contraseña de dicho PAYPAL:");
-                    String contrasena = reader2.nextLine();
-                    PayPal newpay = new PayPal(correo, contrasena);
-                    cliente.setnewmetPago(newpay);
+                    boolean repetir=false;
+                    do{
+                        System.out.println("Ingresa tu correo electronico a asociar:");
+                        String correo = reader2.nextLine();
+                        int contador=0;
+                        if(correo.contains("@")){
+                            contador++;
+                        }
+                        if (correo.contains(" ")) {
+                            contador--;
+                        }
+                        if (correo.toLowerCase().contains("@spam")) {
+                            contador--;
+                        }
+                        if(contador>=1){
+                            System.out.println("Ingresa la contraseña de dicho PAYPAL:");
+                            String contrasena = reader2.nextLine();
+                            PayPal newpay = new PayPal(correo, contrasena);
+                            cliente.setnewmetPago(newpay);
+                            break;
+                        }
+                        else{
+                            System.out.println("Correo invalido ingrese de nuevo el correo sin espacios y con @");
+                            System.out.println("¿Desea salir del regitro de paypal?");
+                            System.out.println("INGRESA s PARA SI / n PARA NO");
+                            String decision3 = reader2.nextLine();
+                            if (decision3.equalsIgnoreCase("s")) {
+                                repetir=false;
+                            }
+                            else{
+                                repetir=true;
+                            }
+                        }
+                        
+                    }while(repetir==true);
                     break;
-
                 default:
                     System.out.println("Ingrese un dato valido");
                     break;
