@@ -92,8 +92,13 @@ public class Pedido {
                 return;
             }
             medioPagoCliente = listaMedioPago.get(opcion - 1);
+            
             if (medioPagoCliente.getClass().getSimpleName().equals("PayPal")) {
                 PayPal paypal = (PayPal) medioPagoCliente;
+                if(paypal.getSaldo()<precioTotal){
+                    System.out.println("El saldo es insuficiente");
+                    return;
+                }
                 System.out.println("Ingrese la contraseña");
                 try {
                     lector.nextLine();
@@ -101,6 +106,7 @@ public class Pedido {
                     if (paypal.getContraseña().equals(contraseña)) {
                         System.out.println("Contraseña aceptada");
                         System.out.println("Se ha enviado una confirmacion de pago a: " + paypal.getCorreo());
+                        paypal.setSaldo(paypal.getSaldo()-precioTotal);
                     } else {
                         System.out.println("Contraseña incorrecta");
                         return;
@@ -112,6 +118,10 @@ public class Pedido {
                 }
             } else {
                 TarjetaCredito tarjeta = (TarjetaCredito) medioPagoCliente;
+                if(tarjeta.getSaldo()<precioTotal){
+                    System.out.println("Saldo insuficiente");
+                    return;
+                }
                 System.out.println("Ingrese el NIP");
                 try {
                     int nip = lector.nextInt();
@@ -119,6 +129,7 @@ public class Pedido {
                     if (tarjeta.getNip() == nip) {
                         System.out.println("NIP aceptado");
                         System.out.println("Se ha enviado una confirmacion a la banca electronica de la tarjeta: *******" + tarjeta.getNumtarj() % 10000);
+                        tarjeta.setSaldo(tarjeta.getSaldo()-precioTotal);
                     } else {
                         System.out.println("NIP incorrecto");
                         return;

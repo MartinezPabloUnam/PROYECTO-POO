@@ -1,5 +1,7 @@
 package Objetos;
 
+import java.util.Random;
+
 /**
  * @author Francisco Javier Montiel Montejano, Pablo Issac Martinez Giles,Angel Uriel Gutierrez Contreras
  * TarjetaCredito metodo que implementa la interfaz MedioPago
@@ -8,6 +10,8 @@ public class TarjetaCredito implements MedioPago
 {
     private long numtarj;
     private int nip;
+    private float saldo;
+    private Random random;
 
      /**
      * Constructo de una instancia de tarjeta de credito
@@ -18,6 +22,7 @@ public class TarjetaCredito implements MedioPago
     {
         this.nip=nip;
         this.numtarj=numtarj;
+        this.saldo=random.nextFloat(500, 50001);
     }
 
     /**    (non-Javadoc)
@@ -30,6 +35,7 @@ public class TarjetaCredito implements MedioPago
     {
         System.out.println("Tarjeta");
         System.out.println("Numero de tarjeta: "+this.numtarj%10000);
+        System.out.println("Saldo: "+this.saldo);
     }
 
     /**
@@ -46,6 +52,14 @@ public class TarjetaCredito implements MedioPago
      */
     public int getNip() {
         return nip;
+    }
+
+    public float getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(float saldo) {
+        this.saldo = saldo;
     }
 
     

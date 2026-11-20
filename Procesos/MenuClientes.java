@@ -56,7 +56,7 @@ public class MenuClientes {
                         System.out.println("No hay productos disponibles");
                         break;
                     }
-                    System.out.println("Igrese el ID del producto que desee agregar");
+                    System.out.println("Ingrese el ID del producto que desee agregar");
                     try {
                         id = lector.nextInt();
                         System.out.println("Ingrese la cantidad que desee agregar");

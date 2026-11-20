@@ -53,11 +53,19 @@ public class MenuAdmins {
                         nombre = lector.nextLine();
                         System.out.println("ID: ");
                         id = lector.nextInt();
+                        if(id<=0){
+                            System.out.println("No se admiten id's negativos");
+                            break;
+                        }
                         lector.nextLine();
                         System.out.println("Categoria: ");
                         categoria = lector.nextLine();
                         System.out.println("Cantidad: ");
                         cantidad = lector.nextInt();
+                        if(cantidad<=0){
+                            System.out.println("No se aceptan cantidades negativas");
+                            break;
+                        }
                         System.out.println("Precio: ");
                         precio = lector.nextFloat();
                         DarAltaProducto.darAltaProducto(precio, id, nombre, categoria, cantidad);

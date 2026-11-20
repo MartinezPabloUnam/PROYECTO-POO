@@ -1,4 +1,7 @@
 package Objetos;
+
+import java.util.Random;
+
 /**
  * @author Francisco Javier Montiel Montejano, Pablo Issac Martinez Giles,Angel Uriel Gutierrez Contreras
  * PayPal clase que implememnta la interfaz MedioPago
@@ -7,6 +10,8 @@ public class PayPal implements MedioPago
 {
     private String correo;
     private String contraseña;
+    private float saldo;
+    private Random random;
 
     /**
      * Constructor de el metodod de pago paypal
@@ -16,7 +21,8 @@ public class PayPal implements MedioPago
     public PayPal(String correo, String contraseña)
     {
         this.contraseña=contraseña;
-            this.correo=correo;
+        this.correo=correo;
+        this.saldo=random.nextFloat(500, 30001);
     }
 
     /**(non-Javadoc)
@@ -29,6 +35,7 @@ public class PayPal implements MedioPago
     {
         System.out.println("Paypal");
         System.out.println("Correo electronico: "+this.correo);
+        System.out.println("Saldo actual: "+this.saldo);
     }
 
     /**
@@ -46,6 +53,15 @@ public class PayPal implements MedioPago
     public String getContraseña() {
         return contraseña;
     }
+
+    public float getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(float saldo) {
+        this.saldo = saldo;
+    }
+
 
 
 }
