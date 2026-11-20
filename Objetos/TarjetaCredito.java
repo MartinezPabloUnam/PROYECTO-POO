@@ -15,7 +15,7 @@ public class TarjetaCredito implements MedioPago
 
      /**
      * Constructo de una instancia de tarjeta de credito
-     * @param numtarj recibe el numero de la tarjeta instanciada(int)
+     * @param numtarj recibe el numero de la tarjeta instanciada(float)
      * @param nip recibe el nip de la tarjeta instasnciada(int)
      */
     public TarjetaCredito(long  numtarj, int nip)
@@ -54,10 +54,17 @@ public class TarjetaCredito implements MedioPago
         return nip;
     }
 
+    /**
+     * getter del saldo
+     * @return retorna el saldo de la tyarjeta de credito
+     */
     public float getSaldo() {
         return saldo;
     }
-
+     /**
+      * setter del saldo
+      * @param saldo recibe como parametro el nuevo saldo de la tarjeta de credito
+      */
     public void setSaldo(float saldo) {
         this.saldo = saldo;
     }

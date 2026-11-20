@@ -54,10 +54,18 @@ public class PayPal implements MedioPago
         return contraseña;
     }
 
+    /**
+     * getter del saldo
+     * @return retorna el saldo de la cuenta de PayPal
+     */
     public float getSaldo() {
         return saldo;
     }
 
+    /**
+     * Modifica el saldo de la cuenat de PayPal
+     * @param saldo recibe como parametro el nuevo saldo
+     */
     public void setSaldo(float saldo) {
         this.saldo = saldo;
     }
