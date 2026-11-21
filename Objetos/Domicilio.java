@@ -1,6 +1,6 @@
 package Objetos;
 /**
- * @author Francisco Javier Montiel Montejano, Pablo Issac Martinez Giles,Angel Uriel Gutierrez Contreras
+ * @author Francisco Javier Montiel Montejano, Pablo Isaac Martinez Giles,Angel Uriel Gutierrez Contreras
  * Domicilio
  */
 public class Domicilio 

@@ -3,7 +3,7 @@ package Objetos;
 import java.util.Random;
 
 /**
- * @author Francisco Javier Montiel Montejano, Pablo Issac Martinez Giles,Angel Uriel Gutierrez Contreras
+ * @author Francisco Javier Montiel Montejano, Pablo Isaac Martinez Giles,Angel Uriel Gutierrez Contreras
  * TarjetaCredito metodo que implementa la interfaz MedioPago
  */
 public class TarjetaCredito implements MedioPago

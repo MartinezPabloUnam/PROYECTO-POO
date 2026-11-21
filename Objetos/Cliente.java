@@ -2,7 +2,7 @@ package Objetos;
 import Procesos.Pedido;
 import java.util.ArrayList;
 /**
- * @author Francisco Javier Montiel Montejano, Pablo Issac Martinez Giles,Angel Uriel Gutierrez Contreras
+ * @author Francisco Javier Montiel Montejano, Pablo Isaac Martinez Giles,Angel Uriel Gutierrez Contreras
  * Cliente clase concreta que hereda de Usuario
  */
 public class Cliente extends Usuario 

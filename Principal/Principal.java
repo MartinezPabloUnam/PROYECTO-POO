@@ -3,7 +3,7 @@ package Principal;
 import Procesos.InicioSesion;
 import java.util.Scanner;
 /**
- * @author Francisco Javier Montiel Montejano, Pablo Issac Martinez Giles,Angel Uriel Gutierrez Contreras
+ * @author Francisco Javier Montiel Montejano, Pablo Isaac Martinez Giles,Angel Uriel Gutierrez Contreras
  * Principal Clase principal
  */
 public class Principal {

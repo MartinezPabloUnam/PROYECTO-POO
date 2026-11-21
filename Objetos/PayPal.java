@@ -3,7 +3,7 @@ package Objetos;
 import java.util.Random;
 
 /**
- * @author Francisco Javier Montiel Montejano, Pablo Issac Martinez Giles,Angel Uriel Gutierrez Contreras
+ * @author Francisco Javier Montiel Montejano, Pablo Isaac Martinez Giles,Angel Uriel Gutierrez Contreras
  * PayPal clase que implememnta la interfaz MedioPago
  */
 public class PayPal implements MedioPago

@@ -3,7 +3,7 @@ package Objetos;
 import Procesos.DarAltaProducto;
 import java.util.ArrayList;
 /**
- * @author Francisco Javier Montiel Montejano, Pablo Issac Martinez Giles,Angel Uriel Gutierrez Contreras 
+ * @author Francisco Javier Montiel Montejano, Pablo Isaac Martinez Giles,Angel Uriel Gutierrez Contreras 
  * Carrito
  */
 public class Carrito {
