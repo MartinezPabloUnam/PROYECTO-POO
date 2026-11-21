@@ -99,7 +99,7 @@ public class MenuAdmins {
                     System.out.println("¿DESEA SALIR DEL MENU?");
                     System.out.println("INGRESA s PARA SI / n PARA NO");
                     String decision2 = lector2.nextLine();
-                    if (decision2.equals("s")) {
+                    if (decision2.toLowerCase().equals("s")) {
                         System.out.println("REGRESANDO AL MENU PRINCIPAL.....");
                         k = 0;
                     }

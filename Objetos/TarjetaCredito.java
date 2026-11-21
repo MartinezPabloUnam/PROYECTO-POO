@@ -15,11 +15,12 @@ public class TarjetaCredito implements MedioPago
 
      /**
      * Constructo de una instancia de tarjeta de credito
-     * @param numtarj recibe el numero de la tarjeta instanciada(float)
+     * @param numtarj recibe el numero de la tarjeta instanciada(long)
      * @param nip recibe el nip de la tarjeta instasnciada(int)
      */
-    public TarjetaCredito(long  numtarj, int nip)
+    public TarjetaCredito(long numtarj, int nip)
     {
+        random=new Random();
         this.nip=nip;
         this.numtarj=numtarj;
         this.saldo=random.nextFloat(500, 50001);

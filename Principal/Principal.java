@@ -43,7 +43,7 @@ public class Principal {
                         System.out.println("¿DESEA SALIR DEL SISTEMA?");
                         System.out.println("INGRESA s PARA SI / n PARA NO");
                         String decision2 = lector2.nextLine();
-                        if (decision2.equals("s")) {
+                        if (decision2.toLowerCase().equals("s")) {
                             System.out.println("GRACIAS POR USAR FACEBOOK MARKET PLACE!!");
                             System.out.println("----VUELVA PRONTO----");
                             k = 0;

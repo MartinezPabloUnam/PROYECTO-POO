@@ -152,7 +152,7 @@ public class MenuClientes {
             
             for(Domicilio dom:cliente.getDomicilios()){
                 if(dom.getCalle().equalsIgnoreCase(calle) && dom.getColonia().equalsIgnoreCase(colonia) && dom.getNumext()==num){
-                    System.out.println("Los datos ingresados ya existen en tus domicilios ingresados anteriormente vulevelo a intentar");
+                    System.out.println("Los datos ingresados ya existen en tus domicilios ingresados anteriormente vuelevelo a intentar");
                     continuar=true;
                     break;
                 }

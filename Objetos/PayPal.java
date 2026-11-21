@@ -20,6 +20,7 @@ public class PayPal implements MedioPago
      */
     public PayPal(String correo, String contraseña)
     {
+        random=new Random();
         this.contraseña=contraseña;
         this.correo=correo;
         this.saldo=random.nextFloat(500, 30001);
