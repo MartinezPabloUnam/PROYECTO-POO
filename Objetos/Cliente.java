@@ -106,6 +106,4 @@ public class Cliente extends Usuario
         return historialPedido;
     }
 
-    
-
 }

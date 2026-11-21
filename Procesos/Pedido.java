@@ -166,7 +166,6 @@ public class Pedido {
                 confirmado = true;
                 cliente.setHistorialPedido(this);
                 System.out.println("Pedido confirmado");
-                imprimirTicket();
                 cliente.getCompras().getListaCarrito().clear();
                 cliente.getCompras().setPrecioTotal(0);
                 return;
