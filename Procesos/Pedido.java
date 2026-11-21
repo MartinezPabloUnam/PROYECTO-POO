@@ -10,7 +10,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-
+/**
+ * @author Francisco Javier Montiel Montejano, Pablo Issac Martinez Giles,Angel Uriel Gutierrez Contreras
+ * Pedido
+ */
 public class Pedido {
 
     private float precioTotal;
