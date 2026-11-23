@@ -46,6 +46,7 @@ public class Pedido {
             return;
         }
         Scanner lector = new Scanner(System.in);
+        Scanner lector2 = new Scanner(System.in);
         precioTotal = cliente.getCompras().getPrecioTotal();
         listaProductosFinal=new ArrayList<>();
         for (Producto elemento:cliente.getCompras().getListaCarrito()){
@@ -127,9 +128,9 @@ public class Pedido {
                 }
                 System.out.println("Ingrese el NIP");
                 try {
-                    int nip = lector.nextInt();
+                    String nip = lector2.nextLine();
                     lector.nextLine();
-                    if (tarjeta.getNip() == nip) {
+                    if (tarjeta.getNip().equals(nip)) {
                         System.out.println("NIP aceptado");
                         System.out.println("Se ha enviado una confirmacion a la banca electronica de la tarjeta: *******" + tarjeta.getNumtarj() % 10000);
                         tarjeta.setSaldo(tarjeta.getSaldo()-precioTotal);

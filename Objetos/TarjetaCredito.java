@@ -9,16 +9,16 @@ import java.util.Random;
 public class TarjetaCredito implements MedioPago
 {
     private long numtarj;
-    private int nip;
+    private String nip;
     private float saldo;
     private Random random;
 
      /**
      * Constructo de una instancia de tarjeta de credito
      * @param numtarj recibe el numero de la tarjeta instanciada(long)
-     * @param nip recibe el nip de la tarjeta instasnciada(int)
+     * @param nip recibe el nip de la tarjeta instasnciada(String)
      */
-    public TarjetaCredito(long numtarj, int nip)
+    public TarjetaCredito(long numtarj, String nip)
     {
         random=new Random();
         this.nip=nip;
@@ -49,9 +49,9 @@ public class TarjetaCredito implements MedioPago
 
     /***
      * getter del nip
-     * @return retorna el nip(int) de la tarjeta
+     * @return retorna el nip(String) de la tarjeta
      */
-    public int getNip() {
+    public String getNip() {
         return nip;
     }
 

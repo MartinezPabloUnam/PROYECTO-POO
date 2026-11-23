@@ -170,6 +170,7 @@ public class MenuClientes {
     public void registrarNewMetodopago(Cliente cliente) {
         Scanner reader = new Scanner(System.in);
         Scanner reader2 = new Scanner(System.in);
+        Scanner reader3 = new Scanner(System.in);
         System.out.println("¿QUE METODO DE PAGO DESEAS AGREGAR?");
         System.out.println("1) TARJETA DE CREDITO");
         System.out.println("2) PAYPAL");
@@ -182,7 +183,7 @@ public class MenuClientes {
                     System.out.println("Ingresa el numero de tu tarjeta a registrar:");
                     long num = reader.nextLong();
                     System.out.println("Ingresa el NIP de dicha tarjeta:");
-                    int nip = reader.nextInt();
+                    String nip = reader3.nextLine();
                     reader.nextLine();
                     TarjetaCredito newtar = new TarjetaCredito(num, nip);
                     cliente.setnewmetPago(newtar);
